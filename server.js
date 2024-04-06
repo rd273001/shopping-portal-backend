@@ -11,6 +11,12 @@ mongoose.connect( process.env.MONGODB_URI )
 
 // middleware
 app.use( express.json() ); // parse incoming requests data as JSON
+app.get( '/', ( req, res ) => {
+  res.json( { message: 'Shopping Portal Home...' } );
+} );
+
+const taskRoutes = require( './routes/taskRoutes' );
+app.use( '/api/tasks', taskRoutes );
 
 // error handling middleware
 app.use( ( err, req, res, next ) => {
